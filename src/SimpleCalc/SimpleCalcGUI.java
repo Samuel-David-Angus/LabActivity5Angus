@@ -20,20 +20,32 @@ public class SimpleCalcGUI extends JFrame{
         btnCompute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int num1 = Integer.parseInt(tfNumber1.getText());
-                int num2 = Integer.parseInt(tfNumber2.getText());
-                int result = 0;
-                String operation = cbOperations.getSelectedItem().toString();
-                if (operation == "+") {
-                    result = add(num1, num2);
-                } else if (operation == "-") {
-                    result = subtract(num1, num2);
-                } else if (operation == "*") {
-                    result = multiply(num1, num2);
-                } else if (operation == "/") {
-                    result = divide(num1, num2);
+                try {
+                    int num1 = Integer.parseInt(tfNumber1.getText());
+                    int num2 = Integer.parseInt(tfNumber2.getText());
+                    int result = 0;
+                    String add = "";
+                    String operation = cbOperations.getSelectedItem().toString();
+                    if (operation == "+") {
+                        result = add(num1, num2);
+                    } else if (operation == "-") {
+                        result = subtract(num1, num2);
+                    } else if (operation == "*") {
+                        result = multiply(num1, num2);
+                    } else if (operation == "/") {
+                        result = divide(num1, num2);
+                        add = " r." + Integer.toString(num1 % num2);
+                    }
+                    tfResult.setText(Integer.toString(result) + add);
+                } catch (NumberFormatException e) {
+                    System.out.println(tfNumber1.getText().length());
+                    if (tfNumber1.getText().length() == 0|| tfNumber2.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(pnlMain, "Both input fields must be filled", null, JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(pnlMain, "Inputs must be whole numbers", null, JOptionPane.ERROR_MESSAGE);
+                    }
+
                 }
-                tfResult.setText(Integer.toString(result));
             }
         });
     }
