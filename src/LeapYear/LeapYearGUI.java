@@ -29,11 +29,17 @@ public class LeapYearGUI extends JFrame{
     }
 
     public String checkYear() {
-        String input = tfYear.getText();
-        int year = Integer.parseInt(input);
-        if (year % 4 == 0) {
-            return "Leap year";
+        try {
+            String input = tfYear.getText();
+            int year = Integer.parseInt(input);
+            if (year % 4 == 0) {
+                return "Leap year";
+            }
+            return "Not a leap year";
+
+        } catch (NumberFormatException e) {
+            return "Input needs to be a year (int)";
         }
-        return "Not a leap year";
+
     }
 }
