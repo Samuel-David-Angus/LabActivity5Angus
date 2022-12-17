@@ -45,6 +45,8 @@ public class SimpleCalcGUI extends JFrame{
                         JOptionPane.showMessageDialog(pnlMain, "Inputs must be whole numbers", null, JOptionPane.ERROR_MESSAGE);
                     }
 
+                } catch (ArithmeticException e) {
+                    JOptionPane.showMessageDialog(pnlMain, "Division by zero is illegal", null, JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
